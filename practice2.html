@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>复选框美化</title>
+<style type="text/css">
+*{margin:0; padding:0;}
+.checkbox{width:500px; height:60px; margin:20px auto; border:1px #333333 solid; overflow:hidden;}
+.checkbox input{display:none;}
+.checkbox li{list-style:none; float:left; font:15px/30px "宋体"; margin-left:10px; position:relative;}
+.checkbox li b{ display:block; width:22px; height:20px; background: url(images/checkbox.gif) -10px -18px; position:absolute; left:0; top:5px;}
+.checkbox li label{padding-left:22px;}
+.checkbox li:hover b{background-position:-10px -118px;}
+.checkbox li.select b{background-position:-10px -218px;}
+.checkbox li.select:hover b{background-position:-10px -318px;}
+</style>
+<script type="text/javascript">
+function addLoadEvent(func) { 
+var oldonload = window.onload; 
+if (typeof window.onload != 'function') { 
+window.onload = func; 
+} else { 
+window.onload = function() { 
+oldonload(); 
+func(); 
+} 
+} 
+} 
+
+function creatTag(){
+	var li=document.getElementById("typelist").getElementsByTagName("li");
+	var label;
+	for(i=0;i<li.length;i++)
+		{
+			label=li[i].getElementsByTagName('label');
+			var bTag=document.createElement("b");
+			li[i].insertBefore(bTag,label[0]);
+		}
+}
+function checklist(){
+ var li=document.getElementById("typelist").getElementsByTagName("li");
+	for (var i=0;i<li.length;i++)
+	{
+		li[i].onclick=function(){
+		if(this.className=="select"){
+		this.className=null;
+		}
+		else{
+		this.className="select";
+		}
+	}
+	}
+}
+addLoadEvent(creatTag);
+addLoadEvent(checklist);
+</script>
+</head>
+<body>
+<div class="checkbox">
+	<form action="#" name="typeForm" method="post">
+		<ul id="typelist">
+			<li><input type="checkbox" name="" id="bao" /><label for="bao">包邮</label></li>
+			<li><input type="checkbox" name="" id="zeng" /><label for="zeng">赠送退货运费险</label></li>
+			<li><input type="checkbox" name="" id="huo" /><label for="huo">货到付款</label></li>
+			<li><input type="checkbox" name="" id="xin" /><label for="xin">新品</label></li>
+			<li><input type="checkbox" name="" id="hai" /><label for="hai">海外商品</label></li>
+			<li><input type="checkbox" name="" id="er" /><label for="er">二手</label></li>
+			<li><input type="checkbox" name="" id="tian" /><label for="tian">天猫</label></li>
+			<li><input type="checkbox" name="" id="zheng" /><label for="zheng">正品保障</label></li>
+			<li><input type="checkbox" name="" id="24" /><label for="24">24小时内发货</label></li>
+			<li><input type="checkbox" name="" id="7+" /><label for="7+">7+天内退货</label></li>
+		</ul>
+	</form>
+</div>
+</body>
+</html>
